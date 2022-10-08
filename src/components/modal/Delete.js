@@ -17,7 +17,7 @@ const Delete = ({ setModalD, id }) => {
                 console.log(err)
             })
     }
-    // console.log(Cookies.get("token"))
+    // console.log(id)
 
     // No Delete
     const handleCancelClick = () => {

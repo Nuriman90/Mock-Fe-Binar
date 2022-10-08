@@ -37,18 +37,19 @@ const Dashboard = () => {
         }).format(number);
     };
 
+    const [dataDetail, setDataDetail] = useState(null);
     const [modalE, setModalE] = useState(false);
 
     const [modalD, setModalD] = useState(false);
-    const [id, setId] = useState(null);
 
-    const clickedE = () => {
+    const clickedE = (v) => {
         setModalE(true);
+        setDataDetail(v);
     };
 
     const clickedD = (v) => {
         setModalD(true);
-        setId(v);
+        setDataDetail(v);
     };
     // console.log(data)
 
@@ -65,7 +66,7 @@ const Dashboard = () => {
                                 <div className='flex'>
                                     <img className='h-52 w-full justify-self-center object-cover rounded-lg' src={res.imageurl} alt='list' />
                                     <div className='absolute p-1 mr-2 top-3 right-3'>
-                                        <FontAwesomeIcon icon={faPen} onClick={clickedE} />
+                                        <FontAwesomeIcon icon={faPen} onClick={() => clickedE({ id: res.id, name: res.name, price: res.price, imageurl: res.imageurl })} />
                                         &nbsp;
                                         &nbsp;
                                         <FontAwesomeIcon icon={faTrash} onClick={() => clickedD(res.id)} />
@@ -86,8 +87,8 @@ const Dashboard = () => {
                         )
                     })
                 }
-                {modalE && < Edit setModalE={setModalE} />}
-                {modalD && < Delete setModalD={setModalD} id={id} />}
+                {modalE && < Edit setModalE={setModalE} data={dataDetail} />}
+                {modalD && < Delete setModalD={setModalD} id={dataDetail} />}
             </div>
         </div>
 
