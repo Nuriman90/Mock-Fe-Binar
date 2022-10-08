@@ -21,16 +21,11 @@ const Edit = ({ setModalE, data }) => {
     // Oke
     const handleOKClick = (event) => {
         event.preventDefault()
-        let {
-            name,
-            price,
-            imageurl
-        } = input
         axios.put(`https://test-binar.herokuapp.com/v1/products/${data.id}`,
             {
-                name,
-                price,
-                imageurl
+                name: data.name,
+                price: data.price,
+                imageurl: data.imageurl
             },
             { headers: { "Authorization": Cookies.get("token") } }
         ).then((res) => {
